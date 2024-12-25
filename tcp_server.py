@@ -16,16 +16,20 @@ def main():
 	while True:
 		
 		client, addr = server.accept()
-		m_thread = threading.THREAD(target=handle_client, args=(client,addr,mesg))	
+		m_thread = threading.Thread(target=handle_client, args=(client,addr,mesg))	
 		m_thread.start()
-		m += 1
+		mesg += 1
 
 
 def handle_client(client, addr, mesg):
 
-	client.sendall(b"mesg")
+	client.sendall(f"message {mesg} ".encode())
 	print("sending message")
-	reply = sock.recv(4096)
+	reply = client.recv(4096)
 	print("Succesfuly established")
-	sock.send(b"ACK")
+	print(reply.decode())
+	client.send(b"ACK")
 
+
+if __name__ == "__main__":
+	main()

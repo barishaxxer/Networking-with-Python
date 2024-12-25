@@ -1,7 +1,7 @@
 import socket
 
-host = "barishaxxer.github.io"
-port = 80
+host = "localhost"
+port = 1337
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # AF_INET6 -> ipv6
